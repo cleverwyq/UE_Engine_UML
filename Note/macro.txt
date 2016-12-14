@@ -16,3 +16,4 @@ IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, GoldenEggEx, "GoldenEggEx
 		PER_MODULE_BOILERPLATE_ANYLINK(FDefaultGameModuleImpl, ModuleName)
 		
 comments: FDefaultGameModuleImpl is a child class, that define behavior on StartupModule() ShutdownModule()  etc... from IModuleInterface
+		Plugin is also implement such interface to startup!!!
