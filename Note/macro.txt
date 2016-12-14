@@ -1,0 +1,18 @@
+Suppose we have a project GoldenEggEx
+
+GoldenEggEx.cpp
+IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, GoldenEggEx, "GoldenEggEx" );
+->expand it
+		/**/ \
+		/* InitializeModule function, called by module manager after this module's DLL has been loaded */ \
+		/**/ \
+		/* @return	Returns an instance of this module */ \
+		/**/ \
+		extern "C" DLLEXPORT IModuleInterface* InitializeModule() \
+		{ \
+			return new FDefaultGameModuleImpl(); \
+		} \
+		PER_MODULE_BOILERPLATE \
+		PER_MODULE_BOILERPLATE_ANYLINK(FDefaultGameModuleImpl, ModuleName)
+		
+comments: FDefaultGameModuleImpl is a child class, that define behavior on StartupModule() ShutdownModule()  etc... from IModuleInterface
