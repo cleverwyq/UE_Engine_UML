@@ -15,5 +15,10 @@ IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, GoldenEggEx, "GoldenEggEx
 		PER_MODULE_BOILERPLATE \
 		PER_MODULE_BOILERPLATE_ANYLINK(FDefaultGameModuleImpl, ModuleName)
 		
-comments: FDefaultGameModuleImpl is a child class, that define behavior on StartupModule() ShutdownModule()  etc... from IModuleInterface
+comments: 
+1 FDefaultGameModuleImpl is a child class, that define behavior on StartupModule() ShutdownModule()  etc... from IModuleInterface
 		Plugin is also implement such interface to startup!!!
+
+		we can overload this class to our own to do something special.
+		
+2. PER_MODULE_BOILERPLATE overload operator new/delete with UE4 internal implementation.
