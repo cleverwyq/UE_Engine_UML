@@ -1,0 +1,38 @@
+In Launch.cpp
+EnginePreInit() =>
+IProjectManager::Get().LoadProjectFile(FPaths::GetProjectFilePath())
+//It will parse .uproject file content, get the project descriptor
+//One project descriptor will include one or more module descriptor (come from 'Modules' tag)
+------------------------
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{02C9EF92-40F5-77F9-046D-E28152E1FD2F}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "MyProject22",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
+-------------------------
+
+
+
+
+
+
+In LaunchEngineLoop.cpp
+
+bool FEngineLoop::LoadStartupModules()
+{
+IProjectManager::Get().LoadModulesForProject(ELoadingPhase::PreDefault)  || load plugin as well
+IProjectManager::Get().LoadModulesForProject(ELoadingPhase::Default)   || load plugin as well
+IProjectManager::Get().LoadModulesForProject(ELoadingPhase::PostDefault)   ||load plugin as well
+}
+//ELoadingPhase is an enum that define different loading stage
+
+we can add  break point at UObject* UClass::CreateDefaultObject() for many object 
+or UObjectBase.cpp static void UObjectLoadAllCompiledInDefaultProperties() during startup
