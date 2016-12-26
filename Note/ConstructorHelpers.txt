@@ -1,0 +1,4 @@
+ 
+/Game/ThirdPersonCPP/Blueprints/ThirdPersonCharacter 
+
+/Game/ThirdPersonCPP/Blueprints/ThirdPersonCharacter.ThirdPersonCharacter_C

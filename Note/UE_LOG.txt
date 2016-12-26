@@ -1,0 +1,40 @@
+ In code 
+ 
+ UE_LOG(LogLoad, Log, TEXT("(Engine Initialization) Total time: %.2f seconds"), EngineInitializationTime);
+ =>CORE_API DECLARE_LOG_CATEGORY_EXTERN(LogLoad, Log, All);
+==> 	#define DECLARE_LOG_CATEGORY_EXTERN(CategoryName, DefaultVerbosity, CompileTimeVerbosity) \
+		extern struct FLogCategory##CategoryName : public FLogCategory<ELogVerbosity::DefaultVerbosity, ELogVerbosity::CompileTimeVerbosity> \
+		{ \
+			FORCEINLINE FLogCategory##CategoryName() : FLogCategory(TEXT(#CategoryName)) {} \
+		} CategoryName;
+		
+		--LogLoad etc parameters are macro , LogLoad is passed as string value 'CategoryName' , to create a struct named like
+		--struct FLogCategory##CategoryName
+		
+If use self-defined Category for log
+define     DECLARE_LOG_CATEGORY_EXTERN(LogPaper2DEditor, Log, All);
+in code header.
+
+In LogVerbosity.header , define different log level,  the value 'Log' above is one of them
+------------
+namespace ELogVerbosity
+{
+	enum Type
+	{
+		/** Not used */
+		NoLogging		= 0,
+
+		/** Always prints s fatal error to console (and log file) and crashes (even if logging is disabled) */
+		Fatal,
+
+		/** 
+		 * Prints an error to console (and log file). 
+		 * Commandlets and the editor collect and report errors. Error messages result in commandlet failure.
+		 */
+		Error,
+		...
+-----------
+
+
+// Conditional logging. Will only log if Condition is met.
+#define UE_CLOG(Condition, CategoryName, Verbosity, Format, ...) \

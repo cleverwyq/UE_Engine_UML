@@ -3,6 +3,8 @@ EnginePreInit() =>
 IProjectManager::Get().LoadProjectFile(FPaths::GetProjectFilePath())
 //It will parse .uproject file content, get the project descriptor
 //One project descriptor will include one or more module descriptor (come from 'Modules' tag)
+
+functions in ProjectDescriptor.cpp & ModuleDescriptor.cpp
 ------------------------
 {
 	"FileVersion": 3,

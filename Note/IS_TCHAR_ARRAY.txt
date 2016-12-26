@@ -1,0 +1,11 @@
+
+static_assert(IS_TCHAR_ARRAY(Format), "Formatting string must be a TCHAR array.");
+
+#define IS_TCHAR_ARRAY(expr) (sizeof(FTCharArrayTester::Func(expr)) == 2)
+
+struct FTCharArrayTester
+{
+	template <uint32 N>
+	static char (&Func(const TCHAR(&)[N]))[2];   //C++11 can not compile....
+	static char (&Func(...))[1];
+};
