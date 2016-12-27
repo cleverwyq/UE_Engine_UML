@@ -1,0 +1,18 @@
+LinkerLoad.cpp
+
+FLinkerLoad::ELinkerStatus FLinkerLoad::Tick( float InTimeLimit, bool bInUseTimeLimit, bool bInUseFullTimeLimit )
+
+define some steps to load...
+{
+SerializePackageFileSummary();
+SerializeNameMap();
+...
+}
+
+and the tick function can be called recursively
+
+UE4Editor-CoreUObject.dll!FLinkerLoad::Tick(float InTimeLimit, bool bInUseTimeLimit, bool bInUseFullTimeLimit) Line 705	C++
+UE4Editor-CoreUObject.dll!FLinkerLoad::CreateLinker(UPackage * Parent, const wchar_t * Filename, unsigned int LoadFlags) Line 429	C++
+UE4Editor-CoreUObject.dll!GetPackageLinker(UPackage * InOuter, const wchar_t * InLongPackageName, unsigned int LoadFlags, UPackageMap * Sandbox, FGuid * CompatibleGuid) Line 644	C++
+
+
