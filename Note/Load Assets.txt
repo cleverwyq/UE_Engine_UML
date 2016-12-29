@@ -24,6 +24,11 @@ class FLinkerTables
 	TArray<FObjectImport> ImportMap;
 	
 class FLinker : public FLinkerTables
+	/** Table of contents for this package's file */
+	FPackageFileSummary		Summary;
+
+	/** Names used by objects contained within this package */
+	TArray<FName>			NameMap;
 class FLinkerLoad : public FLinker, public FArchiveUObject
 
 so FLinkerLoad has information on imported items.
@@ -34,5 +39,17 @@ here is some part of imported items.
 [3] = {ClassPackage=0x0000000003412220 "/Script/Engine" ClassName=0x0000000001df5780 "CapsuleComponent" XObject=...}
 [9] = {ClassPackage=0x00000000016d8a10 "/Script/CoreUObject" ClassName=0x00000000016d6bf0 "Class" XObject=...}
 
-
+-------------------------------
+For every .uasset binary file, it will read information info 'Summary' [FPackageFileSummary], then
+FLinkerLoad::ELinkerStatus FLinkerLoad::SerializeImportMap()
+{
+	while( ImportMapIndex < Summary.ImportCount && !IsTimeLimitExceeded(TEXT("serializing import map"),100) )
+	{
+		FObjectImport* Import = new(ImportMap)FObjectImport;
+		*this << *Import;
+		ImportMapIndex++;
+	}
+}
+//  << is an operator and load a complete object.
+// NameMap is what?  Initialzed in line 8,  dictionary table for later use.
 
