@@ -7,6 +7,8 @@ define some steps to load...
 SerializePackageFileSummary();
 SerializeNameMap();
 ...
+
+FinalizeCreation();  => call FLinkerLoad::Verify()  to test "imported" items
 }
 
 and the tick function can be called recursively
@@ -14,5 +16,23 @@ and the tick function can be called recursively
 UE4Editor-CoreUObject.dll!FLinkerLoad::Tick(float InTimeLimit, bool bInUseTimeLimit, bool bInUseFullTimeLimit) Line 705	C++
 UE4Editor-CoreUObject.dll!FLinkerLoad::CreateLinker(UPackage * Parent, const wchar_t * Filename, unsigned int LoadFlags) Line 429	C++
 UE4Editor-CoreUObject.dll!GetPackageLinker(UPackage * InOuter, const wchar_t * InLongPackageName, unsigned int LoadFlags, UPackageMap * Sandbox, FGuid * CompatibleGuid) Line 644	C++
+
+It will search .uasset .umap (hardcoded) files to create 'package'
+
+----------------------------------
+class FLinkerTables
+	TArray<FObjectImport> ImportMap;
+	
+class FLinker : public FLinkerTables
+class FLinkerLoad : public FLinker, public FArchiveUObject
+
+so FLinkerLoad has information on imported items.
+
+here is some part of imported items.
+
+[0] = {ClassPackage=0x0000000003412220 "/Script/Engine" ClassName=0x0000000001dfe958 "AnimBlueprintGeneratedClass" ...}
+[3] = {ClassPackage=0x0000000003412220 "/Script/Engine" ClassName=0x0000000001df5780 "CapsuleComponent" XObject=...}
+[9] = {ClassPackage=0x00000000016d8a10 "/Script/CoreUObject" ClassName=0x00000000016d6bf0 "Class" XObject=...}
+
 
 
