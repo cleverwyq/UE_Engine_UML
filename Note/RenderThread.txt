@@ -1,0 +1,9 @@
+>	UE4Editor-Renderer.dll!FDeferredShadingSceneRenderer::Render(FRHICommandListImmediate & RHICmdList) Line 529	C++
+ 	UE4Editor-Renderer.dll!RenderViewFamily_RenderThread(FRHICommandListImmediate & RHICmdList, FSceneRenderer * SceneRenderer) Line 1849	C++
+ 	UE4Editor-Renderer.dll!TGraphTask<`FRendererModule::BeginRenderingViewFamily'::`21'::EURCMacro_FDrawSceneCommand>::ExecuteTask(TArray<FBaseGraphTask *,FDefaultAllocator> & NewTasks, ENamedThreads::Type CurrentThread) Line 868	C++
+ 	UE4Editor-Core.dll!FNamedTaskThread::ProcessTasksNamedThread(int QueueIndex, bool bAllowStall) Line 932	C++
+ 	UE4Editor-Core.dll!FNamedTaskThread::ProcessTasksUntilQuit(int QueueIndex) Line 679	C++
+ 	UE4Editor-RenderCore.dll!RenderingThreadMain(FEvent * TaskGraphBoundSyncEvent) Line 319	C++
+ 	UE4Editor-RenderCore.dll!FRenderingThread::Run() Line 457	C++
+ 	UE4Editor-Core.dll!FRunnableThreadWin::Run() Line 74	C++
+ 	UE4Editor-Core.dll!FRunnableThreadWin::GuardedRun() Line 23	C++
