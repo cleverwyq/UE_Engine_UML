@@ -1,0 +1,6 @@
+Every Level has a Array of AActor*
+It will iterate actor, and register/update actor to Scene
+during this, it will register RootComponent first, then sub component one by one 
+
+Break at 
+void FScene::AddPrimitive(UPrimitiveComponent* Primitive)
